@@ -36,9 +36,9 @@ const server = http.createServer(async (req,resp) => {
                         .then(result => {
                             result = JSON.parse(result);
                             for(item of result){
+                                console.log(item.url , '\n' , host + '/photo' + uploadedFileName)
                                 let isThem = sameFace(item.URL , __dirname + '/photo' + uploadedFileName)
                                 .then(result => {
-                                    console.log(item.url , '\n' , host + '/photo' + uploadedFileName)
                                     if(result.isIdentical === true){
                                         profileName = item.name;
                                         return;
