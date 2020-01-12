@@ -23,7 +23,7 @@ const server = http.createServer(async (req,resp) => {
                             if (err) throw err;
                             // let lables = await visionAPI(destination);
                             resp.statusCode = 200;
-                            resp.setHeader('content-type', ' application/json');
+                            resp.setHeader('content-type', ' text/json');
                             resp.end(JSON.stringify({code : 0}));
                         });
                     } 
