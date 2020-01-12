@@ -38,7 +38,6 @@ const server = http.createServer(async (req,resp) => {
             }    
         } else if (req.url.startsWith('/photo')) {
             const file = req.url.split('/')[2];
-            console.log(file + '!!!')
 
             const stream = fs.createReadStream(resolve(__dirname, 'upload', file));
 
