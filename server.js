@@ -6,6 +6,7 @@ const { resolve, basename } = require('path');
 const sameFace = require('./face-api/face-verify').sameFace;
 const DB = require('./db');
 const database = new DB('db.json');
+const log = new DB('log.json');
 const host = 'https://immense-harbor-93861.herokuapp.com/';
 const port = process.env.PORT || process.env.WEBSITES_PORT || 8080;
 const notify = require('./pusher/notif').notify;
@@ -49,6 +50,11 @@ const server = http.createServer(async (req,resp) => {
                                         profileName = personList[index].name;
                                         profileId = personList[index].id;
                                         notify(profileName , profileId);
+                                        log.add(JSON.parse({
+                                            URL : uploadedFileName,
+                                            profileName , 
+                                            profileId
+                                        }));
                                         return;
                                     }
                                 }
