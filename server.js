@@ -32,11 +32,13 @@ const server = http.createServer(async (req,resp) => {
                         let profileName = 'An unknown person';
                         database.list()
                         .then(result => {
+                            const promises = [];
                             result = JSON.parse(result);
                             for(item of result){
                                 console.log('item',item);
                                 console.log('item url : ' + item.URL , '\n' , 'Host name : ' + host + 'photo/' + uploadedFileName)
-                                sameFace(item.URL , host + 'photo/' + uploadedFileName)
+                                promises.push( sameFace(item.URL , host + 'photo/' + uploadedFileName) );
+                                Promise.all( promises )
                                 .then(result => {
                                     if(result.isIdentical === true){
                                         console.log(result.isIdentical);
