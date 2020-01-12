@@ -34,9 +34,8 @@ const server = http.createServer(async (req,resp) => {
                         let profileName;
                         let profiles = database.list()
                         .then(result => {
-                            console.log(`/n${result.length}/n`);
+                            result = JSON.parse(result);
                             for(item of result){
-                                console.log(`/n${result.length}/n`);
                                 let isThem = sameFace(item.URL , __dirname + '/photo' + uploadedFileName)
                                 .then(result => {
                                     console.log(item.url , '\n' , host + '/photo' + uploadedFileName)
