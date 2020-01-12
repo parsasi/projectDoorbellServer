@@ -30,7 +30,7 @@ const server = http.createServer(async (req,resp) => {
                         resp.setHeader('content-type' , 'text/json');
                         resp.end(JSON.stringify({code : 1 , msg : 'Images saved' , url : host + ':' + port + '/' + uploadedFileName }));
                         let profileName = 'An unknown person';
-                        let identified = false;
+                        var identified = false;
                         database.list()
                         .then(result => {
                             result = JSON.parse(result);
