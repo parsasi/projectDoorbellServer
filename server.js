@@ -48,7 +48,7 @@ const server = http.createServer(async (req,resp) => {
             else{
                 resp.statusCode = '200';
                 resp.setHeader('content-type' , 'text/html');
-                resp.end('Welcome to Doorbell Server !');
+                resp.end('Welcome to Doorbell Server 2 !');
                 console.log('Get request');
             }    
         } else if (req.url.startsWith('/photo')) {
