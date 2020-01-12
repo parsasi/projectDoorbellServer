@@ -48,7 +48,7 @@ const server = http.createServer(async (req,resp) => {
                                 })
                                 .catch(e => console.log(e));
                             }
-                            if(identified) ? null : notify(profileName , 1);
+                            identified ? null : notify(profileName , 1);
                         })
                         .catch(e => console.log(e))
                     } 
