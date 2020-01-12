@@ -42,10 +42,6 @@ const server = http.createServer(async (req,resp) => {
     }
 });
 
-server.listen(port,host,(err) => {
-    if(!err){
-        console.log('Server is listening on  ' + port);
-    }else{
-        console.log(err);
-    }
+server.listen( port, host, (err) => {
+    err ? console.log(err) : console.log( `Server is live on ${port}` );
 });
