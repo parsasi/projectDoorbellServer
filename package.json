@@ -5,13 +5,9 @@
   "main": "server.js",
   "dependencies": {
     "formidable": "^1.2.1",
-<<<<<<< HEAD
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
     "tmp": "^0.1.0"
-=======
-    "request": "^2.88.0"
->>>>>>> face-api
   },
   "scripts": {
     "test": "ts-node-dev --transpile-only --clear --no-notify --respawn face-api/face-verify.js",
