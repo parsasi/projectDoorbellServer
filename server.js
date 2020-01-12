@@ -84,6 +84,14 @@ const server = http.createServer(async (req,resp) => {
                 resp.setHeader('content-type' , 'text/html');
                 resp.end('File not found');
             }
+        }else if(req.url.includes('/profiles')){
+            resp.statusCode = '200';
+            resp.setHeader('content-type' , 'text/html');
+            database.list()
+            .then(result => {
+                resp.end(result);
+            })
+            .catch(e => resp.end({msg : e}));
         }else if(req.url.includes('/profile')){
             resp.statusCode = '200';
             resp.setHeader('content-type' , 'text/html');
@@ -93,15 +101,6 @@ const server = http.createServer(async (req,resp) => {
             .then(result => resp.end(JSON.stringify(result)))
             .catch(e => resp.end(JSON.stringify(e)))
 
-        }
-        else if(req.url.includes('/profiles')){
-            resp.statusCode = '200';
-            resp.setHeader('content-type' , 'text/html');
-            database.list()
-            .then(result => {
-                resp.end(result);
-            })
-            .catch(e => resp.end({msg : e}));
         }else if(req.url === '/favicon.ico'){
             resp.writeHead(200, {'Content-Type': 'image/x-icon'} );
             resp.end();
