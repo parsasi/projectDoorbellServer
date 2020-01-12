@@ -12,7 +12,6 @@ const port = process.env.PORT || process.env.WEBSITES_PORT || 8080;
 const notify = require('./pusher/notif').notify;
 const server = http.createServer(async (req,resp) => {
     resp.setHeader('Access-Control-Allow-Origin', '*');
-    console.log(req.url);
     try{
         if(req.url === '/'){
             if(req.method.toLowerCase() == 'post'){
@@ -27,7 +26,6 @@ const server = http.createServer(async (req,resp) => {
                         resp.end(JSON.stringify({code : 1 , msg : 'No Image sent!'}));
                     }else{
                         const uploadedFileName = basename(files.webcam.path);
-                        console.log(uploadedFileName);
                         resp.statusCode = '200';
                         resp.setHeader('content-type' , 'text/json');
                         resp.end(JSON.stringify({code : 1 , msg : 'Images saved' , url : host + ':' + port + '/' + uploadedFileName }));
