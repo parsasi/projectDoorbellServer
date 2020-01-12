@@ -41,8 +41,8 @@ const server = http.createServer(async (req,resp) => {
                                 promises.push( sameFace(item.URL , host + 'photo/' + uploadedFileName) );
                                 Promise.all( promises )
                                 .then(result => {
+                                    console.log(result.isIdentical);
                                     if(result.isIdentical === true){
-                                        console.log(result.isIdentical);
                                         profileName = item.name;
                                         profileId = item.id;
                                     } 
