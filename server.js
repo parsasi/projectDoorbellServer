@@ -35,6 +35,7 @@ const server = http.createServer(async (req,resp) => {
                         .then(result => {
                             for(item of result){
                                 let isThem = sameFace(item.URL , __dirname + '/photo' + uploadedFileName);
+                                console.log(isThem);
                                 if(isThem.isIdentical === true){
                                     notify(item.name , 1);
                                 } else{
