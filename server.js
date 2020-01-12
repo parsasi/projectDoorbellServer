@@ -84,7 +84,7 @@ const server = http.createServer(async (req,resp) => {
                 resp.setHeader('content-type' , 'text/html');
                 resp.end('File not found');
             }
-        }else if(req.url.includes('/singleprofile')){
+        }else if(req.url.includes('/profile')){
             resp.statusCode = '200';
             resp.setHeader('content-type' , 'text/html');
             let urlArray =  req.url.split('/');
@@ -94,7 +94,7 @@ const server = http.createServer(async (req,resp) => {
             .catch(e => resp.end(JSON.stringify(e)))
 
         }
-        else if(req.url.includes('/profile')){
+        else if(req.url.includes('/profiles')){
             resp.statusCode = '200';
             resp.setHeader('content-type' , 'text/html');
             database.list()
