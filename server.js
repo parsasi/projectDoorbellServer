@@ -27,6 +27,7 @@ const server = http.createServer(async (req,resp) => {
                         resp.end(JSON.stringify({code : 1 , msg : 'No Image sent!'}));
                     }else{
                         const uploadedFileName = basename(files.webcam.path);
+                        console.log(uploadedFileName);
                         resp.statusCode = '200';
                         resp.setHeader('content-type' , 'text/json');
                         resp.end(JSON.stringify({code : 1 , msg : 'Images saved' , url : host + ':' + port + '/' + uploadedFileName }));
