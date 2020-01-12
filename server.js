@@ -5,7 +5,7 @@ const fd = require('./face/facedetection');
 const { resolve, basename } = require('path');
 const sameFace = require('./face-api/face-verify').sameFace;
 const DB = require('./db');
-let database = new DB('db.json');
+const database = new DB('db.json');
 const host = process.env.PUBLIC_URL || '127.0.0.1';
 const port = process.env.PORT || process.env.WEBSITES_PORT || 8080;
 const server = http.createServer(async (req,resp) => {
@@ -45,7 +45,17 @@ const server = http.createServer(async (req,resp) => {
             const stream = fs.createReadStream(resolve(__dirname, 'upload', file));
 
             stream.pipe(resp);
-        }else if(req.url.includes('/profile')){
+        }else if(req.url.includes('/singleprofile')){
+            resp.statusCode = '200';
+            resp.setHeader('content-type' , 'text/html');
+            let urlArray =  req.url.split('/');
+            let id = urlArray[urlArray.length - 1];
+            database.find(id)
+            .then(result => resp.end(JSON.stringify(result)))
+            .catch(e => resp.end(JSON.stringify(e)))
+
+        }
+        else if(req.url.includes('/profile')){
             resp.statusCode = '200';
             resp.setHeader('content-type' , 'text/html');
             database.list()

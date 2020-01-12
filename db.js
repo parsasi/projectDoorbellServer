@@ -24,10 +24,13 @@ class DB {
     list(){
         return this.fs.readFile(this.dbFile);
     }
-    findDB(userId){
+    find(userId){
         return new Promise((resolve,reject) => {
         const allUsers = this.list()
-        .then(allUsers => resolve(allUsers.filter((item) => item.userId == userId)))
+        .then(result => {
+            result = JSON.parse(result);
+            resolve(result.filter((item) => item.id == userId)[0])
+        })
         .catch(e => reject(e));
      });
     }
