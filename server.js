@@ -75,11 +75,15 @@ const server = http.createServer(async (req,resp) => {
                 console.log('Get request');
             }    
         } else if (req.url.startsWith('/photo')) {
-            const file = req.url.split('/')[2];
-
-            const stream = fs.createReadStream(resolve(__dirname, 'upload', file));
-
-            stream.pipe(resp);
+            try{
+                const file = req.url.split('/')[2];
+                const stream = fs.createReadStream(resolve(__dirname, 'upload', file));
+                stream.pipe(resp);
+            }catch{
+                resp.statusCode = '200';
+                resp.setHeader('content-type' , 'text/html');
+                resp.end('File not found');
+            }
         }else if(req.url.includes('/singleprofile')){
             resp.statusCode = '200';
             resp.setHeader('content-type' , 'text/html');
