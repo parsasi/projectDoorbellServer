@@ -8,6 +8,7 @@ const DB = require('./db');
 const database = new DB('db.json');
 const host = process.env.PUBLIC_URL || '127.0.0.1';
 const port = process.env.PORT || process.env.WEBSITES_PORT || 8080;
+const notify = require('./pusher/notif').notify;
 const server = http.createServer(async (req,resp) => {
     resp.setHeader('Access-Control-Allow-Origin', '*');
     console.log(req.url);
@@ -35,9 +36,9 @@ const server = http.createServer(async (req,resp) => {
                             for(item of result){
                                 let isThem = sameFace(__dirname + '/upload' + item.URL , __dirname + '/upload' + uploadedFileName);
                                 if(isThem.isIdentical === true){
-                                    console.log('Same person');
+                                    notify('Parsa' , 1);
                                 } else{
-                                    console.log('Different person ');
+                                    notify('Unknown person' , 0);
                                 }
                             }
                         })
