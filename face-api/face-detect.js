@@ -8,5 +8,5 @@ module.exports.getFaceID = async (url) => {
     body: JSON.stringify({ url })
   }
 
-  return await promPost( options )
+  return (await promPost( options ))[0].faceId
 }

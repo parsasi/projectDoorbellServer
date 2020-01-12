@@ -5,8 +5,8 @@ const { promPost } = require('./helpers')
 module.exports.sameFace = async (url1,url2) => {
 
   const faceIds = {
-    faceId1: (await getFaceID( url1 ))[0].faceId,
-    faceId2: (await getFaceID( url2 ))[0].faceId
+    faceId1: await getFaceID( url1 ),
+    faceId2: await getFaceID( url2 )
   }
 
   const options = {
