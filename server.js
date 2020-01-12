@@ -52,7 +52,6 @@ const server = http.createServer(async (req,resp) => {
                                         return;
                                     }
                                 }
-                                console.log('here');
                                 notify(profileName , profileId);
                             })
                             .catch(e => console.log(e));
