@@ -29,25 +29,21 @@ const server = http.createServer(async (req,resp) => {
                         resp.statusCode = '200';
                         resp.setHeader('content-type' , 'text/json');
                         resp.end(JSON.stringify({code : 1 , msg : 'Images saved' , url : host + ':' + port + '/' + uploadedFileName }));
-                        // console.log(sameFace(__dirname + '/photo/'+ 'upload_05c0ccb29ee27ba000b27dc756fe25c3' , __dirname + '/photo/'+ 'upload_1002d53e3edf5de5ef10c57a108b0fd9'));
                         let profileName = 'An unknown person';
-                        let profiles = database.list()
+                        database.list()
                         .then(result => {
                             result = JSON.parse(result);
                             for(item of result){
                                 console.log('item',item);
                                 console.log('item url : ' + item.URL , '\n' , 'Host name : ' + host + 'photo/' + uploadedFileName)
-                                let isThem = sameFace(item.URL , host + 'photo/' + uploadedFileName)
+                                sameFace(item.URL , host + 'photo/' + uploadedFileName)
                                 .then(result => {
-                                    console.log(result);
-                                    if(result.isIdentical === true){
-                                        profileName = item.name;
-                                        return;
-                                    } 
+                                    profileName = item.name;
+                                    notify(profileName , 1);
+                                    return;
                                 })
                                 .catch(e => console.log(e));
                             }
-                            notify(profileName , 1);
                         })
                         .catch(e => console.log(e))
                     } 
