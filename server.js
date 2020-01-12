@@ -35,6 +35,7 @@ const server = http.createServer(async (req,resp) => {
                         .then(result => {
                             for(item of result){
                                 let isThem = sameFace(item.URL , __dirname + '/photo' + uploadedFileName)
+                                console.log(item.url , '\n' , host + '/photo' + uploadedFileName)
                                 .then(result => {
                                     if(result.isIdentical === true){
                                         notify(item.name , 1);
@@ -42,7 +43,7 @@ const server = http.createServer(async (req,resp) => {
                                         notify('Unknown person' , 0);
                                     }
                                 })
-                                .catch(e => console.log(e));
+                                .catch(e => console.log());
                             }
                         })
                         .catch(e => console.log(e))
