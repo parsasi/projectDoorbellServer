@@ -34,9 +34,9 @@ const server = http.createServer(async (req,resp) => {
                         let profiles = database.list()
                         .then(result => {
                             for(item of result){
-                                let isThem = sameFace(__dirname + '/upload' + item.URL , __dirname + '/upload' + uploadedFileName);
+                                let isThem = sameFace(item.URL , __dirname + '/photo' + uploadedFileName);
                                 if(isThem.isIdentical === true){
-                                    notify('Parsa' , 1);
+                                    notify(item.name , 1);
                                 } else{
                                     notify('Unknown person' , 0);
                                 }
