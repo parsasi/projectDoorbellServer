@@ -34,13 +34,15 @@ const server = http.createServer(async (req,resp) => {
                         let profiles = database.list()
                         .then(result => {
                             for(item of result){
-                                let isThem = sameFace(item.URL , __dirname + '/photo' + uploadedFileName);
-                                console.log(isThem + ' !!!');
-                                if(isThem.isIdentical === true){
-                                    notify(item.name , 1);
-                                } else{
-                                    notify('Unknown person' , 0);
-                                }
+                                let isThem = sameFace(item.URL , __dirname + '/photo' + uploadedFileName)
+                                .then(result => {
+                                    if(result.isIdentical === true){
+                                        notify(item.name , 1);
+                                    } else{
+                                        notify('Unknown person' , 0);
+                                    }
+                                })
+                                .catch(e => console.log(e));
                             }
                         })
                         .catch(e => console.log(e))
