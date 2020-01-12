@@ -1,7 +1,6 @@
 const formidable = require('formidable'),
 http = require('http'),
 fs = require('fs');
-const opt = require('./optimize');
 const fd = require('./face/facedetection');
 const { resolve, basename } = require('path');
 const sameFace = require('./face-api/face-verify').sameFace;
@@ -17,14 +16,19 @@ const server = http.createServer(async (req,resp) => {
     try{
         if(req.url === '/'){
             if(req.method.toLowerCase() == 'post'){
-                resp = opt.otReq('200' , 'text/json');
+                resp.statusCode = '200';    
+                resp.setHeader('content-type' , 'text/json');
                 let form = new formidable.IncomingForm();
                 form.uploadDir = resolve(__dirname, 'upload');
                 form.parse(req, async (err, fields, files)  => {
                     if(!files.webcam){
+                        resp.statusCode = '200';
+                        resp.setHeader('content-type' , 'text/json');
                         resp.end(JSON.stringify({code : 1 , msg : 'No Image sent!'}));
                     }else{
                         const uploadedFileName = basename(files.webcam.path);
+                        resp.statusCode = '200';
+                        resp.setHeader('content-type' , 'text/json');
                         resp.end(JSON.stringify({code : 1 , msg : 'Images saved' , url : host + ':' + port + '/' + uploadedFileName }));
                         let profileName = 'An unknown person';
                         let profileId = 0;
@@ -33,7 +37,9 @@ const server = http.createServer(async (req,resp) => {
                             const promises = [];
                             personList = JSON.parse(personList);
                             for(person of personList){
-                                promises.push(sameFace(person.URL , host + 'photo/' + uploadedFileName) );
+                                // console.log('item',item);
+                                // console.log('item url : ' + item.URL , '\n' , 'Host name : ' + host + 'photo/' + uploadedFileName)
+                                promises.push( sameFace(person.URL , host + 'photo/' + uploadedFileName) );
                             }
                             Promise.all( promises )
                             .then(resultsArr => {
@@ -66,8 +72,9 @@ const server = http.createServer(async (req,resp) => {
                 });
             }
             else{
-                resp = opt.otReq('200','text/html')
-                resp.end('Welcome to Doorbell Server ');
+                resp.statusCode = '200';
+                resp.setHeader('content-type' , 'text/html');
+                resp.end('Welcome to Doorbell Server 2 !');
                 console.log('Get request');
             }    
         } else if (req.url.startsWith('/photo')) {
