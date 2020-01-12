@@ -13,7 +13,6 @@ const server = http.createServer(async (req,resp) => {
     resp.setHeader('Access-Control-Allow-Origin', '*');
     console.log(req.url);
     try{
-        console.log(req.method, req.url);
         if(req.url === '/'){
             if(req.method.toLowerCase() == 'post'){
                 resp.statusCode = '200';    
@@ -37,9 +36,10 @@ const server = http.createServer(async (req,resp) => {
                             result = JSON.parse(result);
                             for(item of result){
                                 console.log('item',item);
-                                console.log('item url : ' + item.url , '\n' , 'Host name : ' + host + 'photo/' + uploadedFileName)
+                                console.log('item url : ' + item.URL , '\n' , 'Host name : ' + host + 'photo/' + uploadedFileName)
                                 let isThem = sameFace(item.URL , host + 'photo/' + uploadedFileName)
                                 .then(result => {
+                                    console.log(result);
                                     if(result.isIdentical === true){
                                         profileName = item.name;
                                         return;
