@@ -48,6 +48,8 @@ const server = http.createServer(async (req,resp) => {
                                 })
                                 .catch(e => console.log(e));
                             }
+                            console.log(identified);
+
                             identified ? null : notify(profileName , 1);
                         })
                         .catch(e => console.log(e))
