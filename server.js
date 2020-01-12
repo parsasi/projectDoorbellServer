@@ -37,7 +37,7 @@ const server = http.createServer(async (req,resp) => {
                                 if(isThem.isIdentical === true){
                                     console.log('Same person');
                                 } else{
-                                    console.log('Different person');
+                                    console.log('Different person ');
                                 }
                             }
                         })
@@ -48,7 +48,7 @@ const server = http.createServer(async (req,resp) => {
             else{
                 resp.statusCode = '200';
                 resp.setHeader('content-type' , 'text/html');
-                resp.end('Doorbell Server !');
+                resp.end('Welcome to Doorbell Server !');
                 console.log('Get request');
             }    
         } else if (req.url.startsWith('/photo')) {
