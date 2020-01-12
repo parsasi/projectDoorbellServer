@@ -48,8 +48,8 @@ const server = http.createServer(async (req,resp) => {
                                         let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+ '-' + today.getHours() + '-' + today.getMinutes();
                                         log.add({
                                             URL : host + 'photo/' +uploadedFileName,
-                                            name , 
-                                            id , 
+                                            profileName , 
+                                            profileId , 
                                             time : date
                                         })
                                         .then(result => console.log('Log : ' , result))
@@ -66,8 +66,8 @@ const server = http.createServer(async (req,resp) => {
                 });
             }
             else{
-                resp = opt.otReq('200','text/html','Welcome to Doorbell Server ')
-                resp.end();
+                resp = opt.otReq('200','text/html')
+                resp.end('Welcome to Doorbell Server ');
                 console.log('Get request');
             }    
         } else if (req.url.startsWith('/photo')) {
