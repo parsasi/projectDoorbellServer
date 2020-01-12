@@ -38,12 +38,15 @@ const server = http.createServer(async (req,resp) => {
                                 console.log('item url : ' + item.URL , '\n' , 'Host name : ' + host + 'photo/' + uploadedFileName)
                                 sameFace(item.URL , host + 'photo/' + uploadedFileName)
                                 .then(result => {
-                                    profileName = item.name;
-                                    notify(profileName , 1);
-                                    return;
+                                    if(result.isIdentical === true){
+                                        profileName = item.name;
+                                        notify(profileName , 1);
+                                        return;
+                                    } 
                                 })
                                 .catch(e => console.log(e));
                             }
+                            notify(profileName , 1);
                         })
                         .catch(e => console.log(e))
                     } 
