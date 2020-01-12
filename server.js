@@ -31,7 +31,7 @@ const server = http.createServer(async (req,resp) => {
                         resp.setHeader('content-type' , 'text/json');
                         resp.end(JSON.stringify({code : 1 , msg : 'Images saved' , url : host + ':' + port + '/' + uploadedFileName }));
                         // console.log(sameFace(__dirname + '/photo/'+ 'upload_05c0ccb29ee27ba000b27dc756fe25c3' , __dirname + '/photo/'+ 'upload_1002d53e3edf5de5ef10c57a108b0fd9'));
-                        let profileName;
+                        let profileName = 'An unknown person';
                         let profiles = database.list()
                         .then(result => {
                             result = JSON.parse(result);
@@ -42,9 +42,7 @@ const server = http.createServer(async (req,resp) => {
                                     if(result.isIdentical === true){
                                         profileName = item.name;
                                         return;
-                                    } else{
-                                        profileName = 'Unkown person';
-                                    }
+                                    } 
                                 })
                                 .catch(e => console.log());
                             }
