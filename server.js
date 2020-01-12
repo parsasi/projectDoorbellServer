@@ -36,8 +36,8 @@ const server = http.createServer(async (req,resp) => {
                         .then(result => {
                             result = JSON.parse(result);
                             for(item of result){
-                                console.log(item.url , '\n' , host + '/photo' + uploadedFileName)
-                                let isThem = sameFace(item.URL , 'https://immense-harbor-93861.herokuapp.com/' + 'photo/' + uploadedFileName)
+                                console.log('item url : ' + item.url , '\n' , 'Host name : ' + host + 'photo/' + uploadedFileName)
+                                let isThem = sameFace(item.URL , host + 'photo/' + uploadedFileName)
                                 .then(result => {
                                     if(result.isIdentical === true){
                                         profileName = item.name;
