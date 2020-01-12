@@ -51,7 +51,7 @@ const server = http.createServer(async (req,resp) => {
                                         profileId = personList[index].id;
                                         notify(profileName , profileId);
                                         log.add({
-                                            URL : uploadedFileName,
+                                            URL : host + 'photo/' +uploadedFileName,
                                             profileName , 
                                             profileId
                                         })
@@ -105,6 +105,14 @@ const server = http.createServer(async (req,resp) => {
         }else if(req.url === '/favicon.ico'){
             resp.writeHead(200, {'Content-Type': 'image/x-icon'} );
             resp.end();
+        } else if(req.url.includes('/log')){
+            resp.statusCode = '200';
+            resp.setHeader('content-type' , 'text/json');
+            log.list()
+            .then(result => {
+                resp.end(result);
+            })
+            .catch(e => resp.end({msg : e}));
         }
     }catch(e) {
         resp.statusCode = '200';
