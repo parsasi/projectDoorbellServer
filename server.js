@@ -44,15 +44,17 @@ const server = http.createServer(async (req,resp) => {
                             .then(resultsArr => {
                                 for ( result of resultsArr ) {
                                     if(result.isIdentical === true){
-                                        console.log(result.isIdentical);
+                                        console.log(result);
                                         const index = resultsArr.indexOf(result);
                                         profileName = personList[index].name;
                                         profileId = personList[index].id;
+                                        notify(profileName , profileId);
+                                        return;
                                     }
                                 }
+                                notify(profileName , profileId);
                             })
                             .catch(e => console.log(e));
-                            notify(profileName , profileId);
                         })
                         .catch(e => console.log(e))
                     } 
