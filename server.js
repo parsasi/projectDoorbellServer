@@ -56,7 +56,7 @@ const server = http.createServer(async (req,resp) => {
                                             profileId
                                         })
                                         .then(result => console.log('Log : ' , result))
-                                        .catch(e => console.log(e));
+                                        .catch(e => console.log('Log Error : ' , e));
                                         return;
                                     }
                                 }
