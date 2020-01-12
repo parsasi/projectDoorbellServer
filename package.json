@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "formidable": "^1.2.1",
+    "pusher-push-notifications-node": "^0.10.3",
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
     "tmp": "^0.1.0",
