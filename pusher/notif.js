@@ -16,11 +16,11 @@ module.exports.notify = (name, personId) => {
           body: "Open the app to view this person's details."
         },
         data: {
-          personId
+          inAppNotificationMessage: personId
         }
       }
     }).then((publishResponse) => {
-      console.log("Just published:", publishResponse.publishId);
+      console.log("Sent:", publishResponse.publishId);
     }).catch((error) => {
       console.log("Error:", error);
     });
