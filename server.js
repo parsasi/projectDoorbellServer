@@ -33,12 +33,15 @@ const server = http.createServer(async (req,resp) => {
                         // console.log(sameFace(__dirname + '/photo/'+ 'upload_05c0ccb29ee27ba000b27dc756fe25c3' , __dirname + '/photo/'+ 'upload_1002d53e3edf5de5ef10c57a108b0fd9'));
                         let profiles = database.list()
                         .then(result => {
+                            console.log(`/n${result.length}/n`);
                             for(item of result){
+                                console.log(`/n${result.length}/n`);
                                 let isThem = sameFace(item.URL , __dirname + '/photo' + uploadedFileName)
                                 console.log(item.url , '\n' , host + '/photo' + uploadedFileName)
                                 .then(result => {
                                     if(result.isIdentical === true){
                                         notify(item.name , 1);
+                                        break;
                                     } else{
                                         notify('Unknown person' , 0);
                                     }
