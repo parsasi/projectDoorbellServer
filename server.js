@@ -53,6 +53,7 @@ const server = http.createServer(async (req,resp) => {
         console.log('error');
     }
 });
+<<<<<<< HEAD
 const port = process.env.PORT || process.env.WEBSITES_PORT || 8080;
 server.listen(port ,(err) => {
     if(!err){
@@ -60,4 +61,9 @@ server.listen(port ,(err) => {
     }else{
         console.log(err);
     }
+=======
+
+server.listen( port, host, (err) => {
+    err ? console.log(err) : console.log( `Server is live on ${port}` );
+>>>>>>> 0a87ae3b4609355e42cfd079b30708edbe3aaf30
 });

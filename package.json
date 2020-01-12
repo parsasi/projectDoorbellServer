@@ -7,7 +7,6 @@
     "formidable": "^1.2.1",
     "tmp": "^0.1.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -16,8 +15,6 @@
     "type": "git",
     "url": "git+https://github.com/parsasi/projectdoorbellserver.git"
   },
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/parsasi/projectdoorbellserver/issues"
   },
