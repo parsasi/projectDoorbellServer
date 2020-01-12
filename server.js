@@ -51,7 +51,7 @@ const server = http.createServer(async (req,resp) => {
                                         profileId = personList[index].id;
                                         notify(profileName , profileId);
                                         let today = new Date();
-                                        let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + today.getMinutes() + '-' + today.getHours();
+                                        let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+ '-' + today.getHours() + '-' + today.getMinutes();
                                         log.add({
                                             URL : host + 'photo/' +uploadedFileName,
                                             profileName , 
