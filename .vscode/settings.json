@@ -1,5 +1,5 @@
 {
     "appService.showBuildDuringDeployPrompt": false,
     "appService.deploySubpath": "",
-    "appService.defaultWebAppToDeploy": "/subscriptions/8b193c4a-fde0-4604-aab5-e1d087e351b4/resourceGroups/personal/providers/Microsoft.Web/sites/projectdoorbell"
+    "appService.defaultWebAppToDeploy": "/subscriptions/8b193c4a-fde0-4604-aab5-e1d087e351b4/resourceGroups/pdb2020/providers/Microsoft.Web/sites/projectDoorbell"
 }

@@ -75,6 +75,9 @@ const server = http.createServer(async (req,resp) => {
                 resp.end(result);
             })
             .catch(e => resp.end({msg : e}));
+        }else if(req.url === '/favicon.ico'){
+            resp.writeHead(200, {'Content-Type': 'image/x-icon'} );
+            resp.end();
         }
     }catch(e) {
         resp.statusCode = '200';
