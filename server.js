@@ -54,8 +54,8 @@ const server = http.createServer(async (req,resp) => {
                                         let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+ '-' + today.getHours() + '-' + today.getMinutes();
                                         log.add({
                                             URL : host + 'photo/' +uploadedFileName,
-                                            profileName , 
-                                            profileId , 
+                                            name , 
+                                            id , 
                                             time : date
                                         })
                                         .then(result => console.log('Log : ' , result))
