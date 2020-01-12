@@ -30,7 +30,6 @@ const server = http.createServer(async (req,resp) => {
                         resp.setHeader('content-type' , 'text/json');
                         resp.end(JSON.stringify({code : 1 , msg : 'Images saved' , url : host + ':' + port + '/' + uploadedFileName }));
                         let profileName = 'An unknown person';
-                        var identified = false;
                         database.list()
                         .then(result => {
                             result = JSON.parse(result);
@@ -42,16 +41,13 @@ const server = http.createServer(async (req,resp) => {
                                     if(result.isIdentical === true){
                                         console.log(result.isIdentical);
                                         profileName = item.name;
-                                        notify(profileName , 1);
-                                        identified = true;
-                                        return;
+
                                     } 
                                 })
                                 .catch(e => console.log(e));
                             }
-                            console.log(identified);
 
-                            identified ? null : notify(profileName , 1);
+                            notify(profileName , 1);
                         })
                         .catch(e => console.log(e))
                     } 
