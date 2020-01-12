@@ -6,7 +6,7 @@ const { resolve, basename } = require('path');
 const sameFace = require('./face-api/face-verify').sameFace;
 const DB = require('./db');
 const database = new DB('db.json');
-const host = process.env.PUBLIC_URL || '127.0.0.1';
+const host = 'https://immense-harbor-93861.herokuapp.com/';
 const port = process.env.PORT || process.env.WEBSITES_PORT || 8080;
 const notify = require('./pusher/notif').notify;
 const server = http.createServer(async (req,resp) => {
@@ -37,7 +37,7 @@ const server = http.createServer(async (req,resp) => {
                             result = JSON.parse(result);
                             for(item of result){
                                 console.log(item.url , '\n' , host + '/photo' + uploadedFileName)
-                                let isThem = sameFace(item.URL , __dirname + '/photo' + uploadedFileName)
+                                let isThem = sameFace(item.URL , 'https://immense-harbor-93861.herokuapp.com/' + 'photo/' + uploadedFileName)
                                 .then(result => {
                                     if(result.isIdentical === true){
                                         profileName = item.name;
