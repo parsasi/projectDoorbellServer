@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "formidable": "^1.2.1"
+    "formidable": "^1.2.1",
+    "tmp": "^0.1.0"
   },
   "devDependencies": {},
   "scripts": {
