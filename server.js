@@ -37,7 +37,7 @@ const server = http.createServer(async (req,resp) => {
                             result = JSON.parse(result);
                             for(item of result){
                                 console.log('item',item);
-                                console.log('item url : ' + item.URL , '\n' , 'Host name : ' + host + 'photo/' + uploadedFileName)
+                                // console.log('item url : ' + item.URL , '\n' , 'Host name : ' + host + 'photo/' + uploadedFileName)
                                 promises.push( sameFace(item.URL , host + 'photo/' + uploadedFileName) );
                                 Promise.all( promises )
                                 .then(resultsArr => {
