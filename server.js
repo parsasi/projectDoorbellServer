@@ -54,7 +54,9 @@ const server = http.createServer(async (req,resp) => {
                                             URL : uploadedFileName,
                                             profileName , 
                                             profileId
-                                        }));
+                                        }))
+                                        .then(result => console.log(result))
+                                        .catch(e => console.log(e));
                                         return;
                                     }
                                 }
