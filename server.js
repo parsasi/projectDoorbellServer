@@ -32,21 +32,22 @@ const server = http.createServer(async (req,resp) => {
                         let profileName = 'An unknown person';
                         let profileId = 0;
                         database.list()
-                        .then(result => {
+                        .then(personList => {
                             const promises = [];
-                            result = JSON.parse(result);
-                            for(item of result){
-                                console.log('item',item);
+                            personList = JSON.parse(personList);
+                            for(person of personList){
+                                // console.log('item',item);
                                 // console.log('item url : ' + item.URL , '\n' , 'Host name : ' + host + 'photo/' + uploadedFileName)
-                                promises.push( sameFace(item.URL , host + 'photo/' + uploadedFileName) );
+                                promises.push( sameFace(person.URL , host + 'photo/' + uploadedFileName) );
                             }
                             Promise.all( promises )
                             .then(resultsArr => {
                                 for ( result of resultsArr ) {
                                     if(result.isIdentical === true){
                                         console.log(result.isIdentical);
-                                        profileName = item.name;
-                                        profileId = item.id;
+                                        const index = resultsArr.indexOf(result);
+                                        profileName = personList[index].name;
+                                        profileId = personList[index].id;
                                     }
                                 }
                             })
