@@ -40,6 +40,7 @@ const server = http.createServer(async (req,resp) => {
                                 sameFace(item.URL , host + 'photo/' + uploadedFileName)
                                 .then(result => {
                                     if(result.isIdentical === true){
+                                        console.log(result.isIdentical);
                                         profileName = item.name;
                                         notify(profileName , 1);
                                         identified = true;
