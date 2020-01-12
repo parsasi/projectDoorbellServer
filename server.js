@@ -50,11 +50,11 @@ const server = http.createServer(async (req,resp) => {
                                         profileName = personList[index].name;
                                         profileId = personList[index].id;
                                         notify(profileName , profileId);
-                                        log.add(JSON.parse({
+                                        log.add({
                                             URL : uploadedFileName,
                                             profileName , 
                                             profileId
-                                        }))
+                                        })
                                         .then(result => console.log('Log : ' , result))
                                         .catch(e => console.log(e));
                                         return;
