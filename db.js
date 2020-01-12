@@ -7,16 +7,12 @@ class DB {
         return new Promise((resolve,reject) => {
             this.list()
             .then((allUsers) => {
-                allUsers = JSON.parse(allUsers);
-                if(allUsers.filter(item => item.userId == profile.userId)[0]){
-                    reject('User ID already exists!');
-                }else{
-                    allUsers.push(profile);
-                    console.log(allUsers)
-                    this.fs.writeFile(this.dbFile ,JSON.stringify(allUsers))
-                    .then(result => resolve('Successfully wrote to the file'))
-                    .catch(e => reject(e));
-                }
+                allUsers = JSON.parse(allUsers);                
+                allUsers.push(profile);
+                console.log(allUsers)
+                this.fs.writeFile(this.dbFile ,JSON.stringify(allUsers))
+                .then(result => resolve('Successfully wrote to the file'))
+                .catch(e => reject(e));
             })
             .catch(e => reject(e));  
         });

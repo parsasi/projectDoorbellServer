@@ -50,10 +50,13 @@ const server = http.createServer(async (req,resp) => {
                                         profileName = personList[index].name;
                                         profileId = personList[index].id;
                                         notify(profileName , profileId);
+                                        let today = new Date();
+                                        let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
                                         log.add({
                                             URL : host + 'photo/' +uploadedFileName,
                                             profileName , 
-                                            profileId
+                                            profileId , 
+                                            time : date
                                         })
                                         .then(result => console.log('Log : ' , result))
                                         .catch(e => console.log('Log Error : ' , e));
