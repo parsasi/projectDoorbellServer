@@ -4,7 +4,7 @@ fs = require('fs');
 // DB = require('./db');
 // const port = '8080' , host = '127.0.0.1';
 const server = http.createServer(async (req,resp) => {
-    // res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     console.log('Reqested');
     try{
         if(req.url === '/'){
