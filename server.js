@@ -1,3 +1,5 @@
+
+ 
 const formidable = require('formidable'),
 http = require('http'),
 fs = require('fs');
@@ -12,6 +14,7 @@ const port = process.env.PORT || process.env.WEBSITES_PORT || 8080;
 const notify = require('./pusher/notif').notify;
 const server = http.createServer(async (req,resp) => {
     resp.setHeader('Access-Control-Allow-Origin', '*');
+    console.log(req.url);
     try{
         if(req.url === '/'){
             if(req.method.toLowerCase() == 'post'){
