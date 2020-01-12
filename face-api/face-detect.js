@@ -5,7 +5,7 @@ module.exports.getFaceID = async (url) => {
 
   const options = {
     ...detectOptions,
-    body: `{ "url": "${url}" }`,
+    body: JSON.stringify({ url })
   }
 
   return await promPost( options )
