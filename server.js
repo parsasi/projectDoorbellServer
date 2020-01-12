@@ -40,16 +40,17 @@ const server = http.createServer(async (req,resp) => {
                                 console.log('item url : ' + item.URL , '\n' , 'Host name : ' + host + 'photo/' + uploadedFileName)
                                 promises.push( sameFace(item.URL , host + 'photo/' + uploadedFileName) );
                                 Promise.all( promises )
-                                .then(result => {
-                                    if(result.isIdentical === true){
-                                        console.log(result.isIdentical);
-                                        profileName = item.name;
-                                        profileId = item.id;
-                                    } 
+                                .then(resultsArr => {
+                                    for ( result of resultsArr ) {
+                                        if(result.isIdentical === true){
+                                            console.log(result.isIdentical);
+                                            profileName = item.name;
+                                            profileId = item.id;
+                                        }
+                                    }
                                 })
                                 .catch(e => console.log(e));
                             }
-
                             notify(profileName , profileId);
                         })
                         .catch(e => console.log(e))
