@@ -1,0 +1,5 @@
+{
+    "appService.showBuildDuringDeployPrompt": false,
+    "appService.defaultWebAppToDeploy": "/subscriptions/8b193c4a-fde0-4604-aab5-e1d087e351b4/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/doorbell",
+    "appService.deploySubpath": ""
+}
