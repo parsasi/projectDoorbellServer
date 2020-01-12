@@ -42,7 +42,7 @@ const server = http.createServer(async (req,resp) => {
                                     console.log(item.url , '\n' , host + '/photo' + uploadedFileName)
                                     if(result.isIdentical === true){
                                         profileName = item.name;
-                                        break;
+                                        return;
                                     } else{
                                         profileName = 'Unkown person';
                                     }
